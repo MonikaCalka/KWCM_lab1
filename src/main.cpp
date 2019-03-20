@@ -1,10 +1,22 @@
-#include "trygonometria.h"
 #include "string"
 #include "iostream"
+#include "LaborkaConfig.h"
+
+#ifdef USE_TRIGONOMETRY_DEGREE
+	#include "trygonometria.h"
+#else
+	#include "cmath"
+#endif
+
 int main() {
-	std::cout << "sin(45) = " << degreemath::sin(45) << std::endl;
-	std::cout << "con(45) = " << degreemath::cos(45) << std::endl;
-	std::cout << "tg(45) = " << degreemath::tg(45) << std::endl;
-	std::cout << "ctg(45) = " << degreemath::ctg(45) << std::endl;
+
+	double result;
+	#ifdef USE_TRIGONOMETRY_DEGREE
+		result = degreemath::sin(45.0);
+	#else
+		result = cos(3.14/4.0);
+	#endif
+
+	std::cout << "result: " << result << std::endl;
 	return 0; 
 }
